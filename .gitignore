@@ -2,7 +2,10 @@
 *.DS_Store
 
 # Xcode
+*/build/*
 build
+*.build
+*/Debug/*
 profile
 *.pbxuser
 *.mode1v3
@@ -10,3 +13,17 @@ profile
 *.perspectivev3
 *.xcuserstate
 xcuserdata/
+
+# Autotools
+
+*.cache
+*.status
+*~
+*stamp-h1
+*.log
+config.h
+confdefs.h
+
+# CMake
+*Cache.txt
+CMakeFiles/*

@@ -16,15 +16,15 @@
 - (id)initWithRequest:(NSURLRequest *)request;
 {
     NSParameterAssert(request);
-    
-    if (self = [self init])
+
+    if ((self = [self init])) // Could possibly have meant to have been == instead of =; I only added parentheses instead to be safe
     {
         if (![self validateRequest:request])
         {
             [self release]; return nil;
         }
         _request = [request copy];
-        
+
         _handle = [[CURLHandle alloc] init];
         [_handle setDelegate:self];
         if (!_handle)
@@ -33,7 +33,7 @@
             return nil;
         }
     }
-    
+
     return self;
 }
 
@@ -45,7 +45,7 @@
     [_request release];
     [_credential release];
     [_data release];
-    
+
     [super dealloc];
 }
 
@@ -54,12 +54,12 @@
 - (void)useCredential:(NSURLCredential *)credential
 {
     [_credential release]; _credential = [credential retain];
-    
+
     NSString *user = [credential user];
     if (user)
     {
         [_handle setString:user forKey:CURLOPT_USERNAME];
-        
+
         NSString *password = [credential password];
         if (password) [_handle setString:password forKey:CURLOPT_PASSWORD];
     }
@@ -71,7 +71,7 @@
 - (void)setBaseRequest:(NSURLRequest *)request;
 {
     NSParameterAssert([self validateRequest:request]);
-    
+
     request = [request copy];
     [_request release]; _request = request;
 }
@@ -86,18 +86,18 @@
 {
     NSMutableURLRequest *request = [_request mutableCopy];
     [request curl_setCreateIntermediateDirectories:createIntermediates];
-    
+
     if ([path length])  // nil/empty paths should only occur when trying to CWD to the home directory
     {
         // Special case: Root directory when _request is a pathless URL (e.g. ftp://example.com ) needs a second slash to tell Curl it's absolute
         //if ([path isEqualToString:@"/"]) path = @"//";
-        
+
         if ([path isAbsolutePath])
         {
             // It turns out that to list root, you need a URL like ftp://example.com//./
             if ([path length] == 1) path = @"/.";
         }
-        
+
         if (isDirectory)
         {
             if (![path hasSuffix:@"/"] || [path isEqualToString:@"/"])
@@ -112,10 +112,10 @@
                 path = [path substringToIndex:[path length] - 1];
             }
         }
-        
+
         [request setURL:[[self class] URLWithPath:path relativeToURL:[request URL]]];
     }
-    
+
     return request;
 }
 
@@ -131,12 +131,12 @@ createIntermediateDirectories:(BOOL)createIntermediates
     // If the connection is already at that directory then curl wisely does nothing
     NSMutableURLRequest *request = [self newMutableRequestWithPath:directory isDirectory:YES createIntermediateDirectories:createIntermediates];
     [request setHTTPMethod:@"HEAD"];
-    
+
     // Custom commands once we're in the correct directory
     // CURLOPT_PREQUOTE does much the same thing, but sometimes runs the command twice in my testing
     [request curl_setPostTransferCommands:commands];
-    
-    
+
+
     BOOL result = [_handle loadRequest:request error:error];
     [request release];
     return result;
@@ -148,10 +148,10 @@ createIntermediateDirectories:(BOOL)createIntermediates
     NSMutableURLRequest *request = [_request mutableCopy];
     [request setURL:[NSURL URLWithString:@"/" relativeToURL:[request URL]]];
     [request setHTTPMethod:@"HEAD"];
-    
+
     BOOL success = [_handle loadRequest:request error:error];
     [request release];
-    
+
     if (success)
     {
         NSString *result = [_handle initialFTPPath];
@@ -171,12 +171,12 @@ createIntermediateDirectories:(BOOL)createIntermediates
                                 usingBlock:(void (^)(NSDictionary *parsedResourceListing))block;
 {
     if (!path) path = @".";
-    
+
     NSMutableURLRequest *request = [self newMutableRequestWithPath:path isDirectory:YES createIntermediateDirectories:NO];
-    
+
     _data = [[NSMutableData alloc] init];
     BOOL result = [_handle loadRequest:request error:error];
-    
+
     // Process the data to make a directory listing
     while (result)
     {
@@ -184,7 +184,7 @@ createIntermediateDirectories:(BOOL)createIntermediates
         CFIndex bytesConsumed = CFFTPCreateParsedResourceListing(NULL,
                                                                  [_data bytes], [_data length],
                                                                  &parsedDict);
-        
+
         if (bytesConsumed > 0)
         {
             // Make sure CFFTPCreateParsedResourceListing was able to properly
@@ -194,7 +194,7 @@ createIntermediateDirectories:(BOOL)createIntermediates
                 block((NSDictionary *)parsedDict);
                 CFRelease(parsedDict);
             }
-            
+
             [_data replaceBytesInRange:NSMakeRange(0, bytesConsumed) withBytes:NULL length:0];
         }
         else if (bytesConsumed < 0)
@@ -206,7 +206,7 @@ createIntermediateDirectories:(BOOL)createIntermediates
                                           [request URL], NSURLErrorFailingURLErrorKey,
                                           [[request URL] absoluteString], NSURLErrorFailingURLStringErrorKey,
                                           nil];
-                
+
                 *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotParseResponse userInfo:userInfo];
                 [userInfo release];
             }
@@ -217,11 +217,11 @@ createIntermediateDirectories:(BOOL)createIntermediates
             break;
         }
     }
-    
+
     [request release];
     [_data release]; _data = nil;
-    
-    
+
+
     return result;
 }
 
@@ -231,17 +231,17 @@ createIntermediateDirectories:(BOOL)createIntermediates
 {
     NSMutableURLRequest *request = [self newMutableRequestWithPath:path isDirectory:NO createIntermediateDirectories:createIntermediates];
     [request setHTTPBody:data];
-    
+
     BOOL result = [self createFileWithRequest:request error:error progressBlock:nil];
     [request release];
-    
+
     return result;
 }
 
 - (BOOL)createFileAtPath:(NSString *)path withContentsOfURL:(NSURL *)url withIntermediateDirectories:(BOOL)createIntermediates error:(NSError **)error progressBlock:(void (^)(NSUInteger bytesWritten))progressBlock;
 {
     NSMutableURLRequest *request = [self newMutableRequestWithPath:path isDirectory:NO createIntermediateDirectories:createIntermediates];
-    
+
     // Read the data using an input stream if possible
     NSInputStream *stream = [[NSInputStream alloc] initWithURL:url];
     if (stream)
@@ -263,10 +263,10 @@ createIntermediateDirectories:(BOOL)createIntermediates
             return NO;
         }
     }
-    
+
     BOOL result = [self createFileWithRequest:request error:error progressBlock:progressBlock];
     [request release];
-    
+
     return result;
 }
 
@@ -278,12 +278,12 @@ createIntermediateDirectories:(BOOL)createIntermediates
         if (bytesWritten == 0) atEnd = YES;
         if (progressBlock) progressBlock(bytesWritten);
     };
-    
+
     NSError *error;
     BOOL result = [_handle loadRequest:request error:&error];
     _progressBlock = NULL;
-    
-    
+
+
     // Long FTP uploads have a tendency to have the control connection cutoff for idling. As a hack, assume that if we reached the end of the body stream, a timeout is likely because of that
     if (!result)
     {
@@ -291,10 +291,10 @@ createIntermediateDirectories:(BOOL)createIntermediates
         {
             return YES;
         }
-        
+
         if (outError) *outError = error;
     }
-    
+
     return result;
 }
 
@@ -310,7 +310,7 @@ createIntermediateDirectories:(BOOL)createIntermediates
 {
     NSParameterAssert(attributes);
     NSParameterAssert(path);
-    
+
     NSNumber *permissions = [attributes objectForKey:NSFilePosixPermissions];
     if (permissions)
     {
@@ -318,15 +318,15 @@ createIntermediateDirectories:(BOOL)createIntermediates
                                                       @"SITE CHMOD %lo %@",
                                                       [permissions unsignedLongValue],
                                                       [path lastPathComponent]]];
-        
+
         BOOL result = [self executeCustomCommands:commands
                                       inDirectory:[path stringByDeletingLastPathComponent]
                     createIntermediateDirectories:NO
                                             error:error];
-        
+
         if (!result) return NO;
     }
-    
+
     return YES;
 }
 
@@ -386,7 +386,7 @@ createIntermediateDirectories:(BOOL)createIntermediates
     {
         string = @"PASS ####";
     }
-    
+
     [[self delegate] FTPSession:self didReceiveDebugInfo:string ofType:type];
 }
 
@@ -396,7 +396,7 @@ createIntermediateDirectories:(BOOL)createIntermediates
 {
     // FTP is special. Absolute paths need to specified with an extra prepended slash <http://curl.haxx.se/libcurl/c/curl_easy_setopt.html#CURLOPTURL>
     NSString *scheme = [baseURL scheme];
-    
+
     if (([@"ftp" caseInsensitiveCompare:scheme] == NSOrderedSame || [@"ftps" caseInsensitiveCompare:scheme] == NSOrderedSame) &&
         [path isAbsolutePath])
     {

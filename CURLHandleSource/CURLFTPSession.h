@@ -18,9 +18,9 @@
     CURLHandle          *_handle;
     NSURLRequest        *_request;
     NSURLCredential     *_credential;
-    
+
     id <CURLFTPSessionDelegate> _delegate;
-    
+
     NSMutableData   *_data;
     void            (^_progressBlock)(NSUInteger bytesWritten);
 }
