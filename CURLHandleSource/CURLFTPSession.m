@@ -350,7 +350,8 @@ createIntermediateDirectories:(BOOL)createIntermediates
 {
     NSString *from = [NSString stringWithFormat:@"RNFR %@", [fromPath lastPathComponent]];
     NSString *to = [NSString stringWithFormat:@"RNTO %@", toPath];
-    return [self executeCustomCommands:@[from, to]
+    id commands[] = {from, to};
+    return [self executeCustomCommands:[NSArray arrayWithObjects:commands count:2]
                            inDirectory:[fromPath stringByDeletingLastPathComponent]
          createIntermediateDirectories:NO
                                  error:error];

@@ -14,10 +14,14 @@ AC_ISC_POSIX
 
 # Checks for programs.
 AC_PROG_CC
+AM_PROG_CC_C_O
+AC_PROG_CPP
+AC_PROG_CXX
 AC_PROG_OBJC
 AC_PROG_MAKE_SET
 AC_PROG_INSTALL
 AC_PROG_LN_S
+AC_PROG_RANLIB
 LT_INIT
 
 # The "EBG_PROG_*" macros come from https://github.com/cooljeanius/MacOSXMacros 
