@@ -1,5 +1,5 @@
 # Mac OS X
-*.DS_Store
+*DS_Store*
 
 # Xcode
 */build/*
@@ -20,9 +20,12 @@ xcuserdata/
 *.status
 *~
 *stamp-h1
+stamp-h*
 *.log
 config.h
 confdefs.h
+libtool
+Makefile
 
 # CMake
 *Cache.txt

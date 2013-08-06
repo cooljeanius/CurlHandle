@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
-AC_CONFIG_SRCDIR([config.h.in])
+AC_CONFIG_SRCDIR([confdefs.h])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
@@ -29,4 +29,6 @@ AC_TYPE_UINT64_T
 AC_FUNC_ERROR_AT_LINE
 
 AC_CONFIG_FILES([Makefile])
+AC_CONFIG_SUBDIRS([c-ares
+                   curl])
 AC_OUTPUT
