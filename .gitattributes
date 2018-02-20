@@ -9,3 +9,6 @@ Makefile linguist-vendored
 aclocal.m4 linguist-vendored
 m4/libtool.m4 linguist-vendored
 m4/lt*.m4 linguist-vendored
+m4/ax_*.m4 linguist-vendored
+m4/bakefile*.m4 linguist-vendored
+m4/xorg-macros.m4 linguist-vendored
