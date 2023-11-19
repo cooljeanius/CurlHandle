@@ -414,11 +414,12 @@ AC_DEFUN([MP_CHECK_FRAMEWORK_IOKIT],[
 ])
 
 #
-# Return MacOSX version using system_profile tool.
+# Return MacOSX version using the system_profile tool.
+# (or whichever tool works)
 # Taken from Scilab's macros
 #
 AC_DEFUN([AC_GET_MACOSX_VERSION],[
-    if test "x$DEFAULTS" = "x"; then
+    if test "x${DEFAULTS}" = "x"; then
         AC_PATH_PROG([DEFAULTS],[defaults])
     fi
     AC_PATH_PROG([SW_VERS],[sw_vers])
@@ -435,10 +436,17 @@ AC_DEFUN([AC_GET_MACOSX_VERSION],[
         [darwin_version="`uname -r | cut -d. -f1`"]
         [macosx_version=10.$(($darwin_version - 4))]
     else
-        AC_MSG_ERROR([none of the standard ways of determining the Mac OS X Version are available])
+        AC_MSG_ERROR([none of the standard ways of determining the Mac OS X version are available.])
     fi
     AC_MSG_CHECKING([Mac OS X Version])
     case $macosx_version in
+         11.*)
+              AC_MSG_RESULT([macOS 11 - Big Sur])
+              AC_MSG_WARN([there has been a big gap since the previous tested version; expect breakages])
+              ;;
+         10.9*)
+              AC_MSG_RESULT([Mac OS X 10.9 - Mavericks.])
+              ;;
          10.8*)
               AC_MSG_RESULT([Mac OS X 10.8 - Mountain Lion.])
          ;;
@@ -452,7 +460,7 @@ AC_DEFUN([AC_GET_MACOSX_VERSION],[
               AC_MSG_RESULT([Mac OS X 10.5 - Leopard.])
          ;;
          *)
-              AC_MSG_ERROR([MacOSX 10.5, 10.6, 10.7 or 10.8 are needed. Found $macosx_version])
+              AC_MSG_ERROR([MacOSX 10.5, 10.6, 10.7, 10.8, or 10.9 are needed. Found $macosx_version])
          ;;
 	 esac
 ])

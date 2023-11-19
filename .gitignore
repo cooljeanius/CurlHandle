@@ -24,7 +24,9 @@ stamp-h*
 *.log
 config.h
 confdefs.h
+conftest*
 libtool
+lib*.a
 Makefile
 
 # CMake

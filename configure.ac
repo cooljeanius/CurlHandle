@@ -13,33 +13,36 @@ AM_SANITY_CHECK
 AC_SEARCH_LIBS([strerror],[cposix])dnl# This used to be AC_ISC_POSIX
 
 # Checks for programs.
-if test "x$CC" = "x"; then
-	AM_PROG_CC_C_O
-else
-	test ! -z "$CC"
-	AC_SUBST([CC])
-fi
-if test "x$CPP" = "x"; then
-	XORG_PROG_RAWCPP
-fi
+AS_IF([test "x${CC}" = "x"],[
+  AM_PROG_CC_C_O
+],[
+  test -n "${CC}" && export CC
+  AC_SUBST([CC])dnl
+])dnl
+  ## Preprocessor:
+AS_IF([test "x${CPP}" = "x"],[
+  XORG_PROG_RAWCPP
+])dnl
 AC_PROG_CXX
 AC_PROG_OBJC
-if test "x$MAKE" = "x"; then
-	AC_PATH_PROG([MAKE],[make gmake gnumake])
-	AC_PROG_MAKE_SET
-fi
-if test "x$INSTALL" = "x"; then
-	test ! -z "$INSTALL"
-	AC_PROG_INSTALL
-fi
+AS_IF([test "x${MAKE}" = "x"],[
+  AC_PATH_PROG([MAKE],[make gmake gnumake])
+  AC_PROG_MAKE_SET
+])dnl
+  ## Just in case not already checked:
+AS_IF([test "x${INSTALL}" = "x"],[
+  test -z "${INSTALL}" || unset INSTALL
+  AC_PROG_INSTALL
+])dnl
+  ## (need whitespace)
 AC_PROG_LN_S
 LT_INIT
-if test "x$RANLIB" = "x"; then
-	AC_PROG_RANLIB
-else
-	test ! -z "$RANLIB"
-	AC_SUBST([RANLIB])
-fi
+AS_IF([test "x${RANLIB}" = "x"],[
+  AC_PROG_RANLIB
+],[
+  test -n "${RANLIB}" && export RANLIB
+  AC_SUBST([RANLIB])dnl
+])dnl
 
 # The "EBG_PROG_*" macros come from https://github.com/cooljeanius/MacOSXMacros
 EBG_DEVELOPER_DIR
@@ -57,12 +60,11 @@ AC_GET_MACOSX_VERSION
 AC_BAKEFILE_PRECOMP_HEADERS
 
 # Checks for libraries.
-# FIXME: Replace `main' with a function in `-lcurl':
-AC_CHECK_LIB([curl],[main])
+AC_CHECK_LIB([curl],[curl_easy_setopt])
 AX_LIB_CURL dnl# from the autoconf-archive package
 
 # Checks for header files.
-AC_CHECK_HEADERS([sys/socket.h])
+AC_CHECK_HEADERS([sys/socket.h])dnl
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
@@ -74,6 +76,7 @@ AC_TYPE_UINT64_T
 AC_FUNC_ERROR_AT_LINE
 AC_PROG_GCC_TRADITIONAL
 
+# Output.
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_SUBDIRS([c-ares curl])
 AC_OUTPUT
