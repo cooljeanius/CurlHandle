@@ -1,0 +1,6 @@
+[submodule "c-ares"]
+	path = c-ares
+	url = https://github.com/c-ares/c-ares/
+[submodule "curl"]
+	path = curl
+	url = https://github.com/karelia/curl/

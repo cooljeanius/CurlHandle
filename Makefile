@@ -162,7 +162,7 @@ am__define_uniq_tagged_files = \
 DIST_SUBDIRS = $(SUBDIRS)
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in AUTHORS \
 	COPYING ChangeLog INSTALL NEWS README compile config.guess \
-	config.sub install-sh ltmain.sh missing
+	config.sub depcomp install-sh ltmain.sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -217,7 +217,7 @@ AUTOMAKE = ${SHELL} '/Users/ericgallager/CurlHandle/missing' automake-1.16
 AWK = gawk
 BK_MAKE_PCH = /Users/ericgallager/CurlHandle/bk-make-pch
 CC = gcc
-CCDEPMODE = depmode=none
+CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CLANG = /opt/local/bin/clang
 CPP = gcc -E
@@ -229,7 +229,7 @@ CURL_CONFIG = /opt/local/bin/curl-config
 CURL_LIBS = -L/opt/local/lib -lcurl
 CXX = g++
 CXXCPP = g++ -E
-CXXDEPMODE = depmode=none
+CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -g -O2
 CYGPATH_W = echo
 DEFAULTS = /usr/bin/defaults
@@ -279,7 +279,7 @@ NM = /opt/local/bin/nm -B
 NMBLOOKUP = /opt/local/bin/nmblookup
 NMEDIT = nmedit
 OBJC = gcc
-OBJCDEPMODE = depmode=none
+OBJCDEPMODE = depmode=gcc3
 OBJCFLAGS = -g -O2
 OBJDUMP = objdump
 OBJEXT = o

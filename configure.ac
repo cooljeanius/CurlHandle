@@ -2,14 +2,15 @@ dnl#                                               -*- Autoconf -*-
 dnl# Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([curlhandle],[3.3.1],[https://github.com/karelia/curlhandle/issues])
-AC_CONFIG_SRCDIR([CURLHandleSource/ares_build-i386.h])
-AC_CONFIG_HEADER([config.h])
-AC_CONFIG_MACRO_DIR([m4])
+AC_INIT([curlhandle],[3.3.1],[https://github.com/karelia/curlhandle/issues])dnl
+AC_CONFIG_SRCDIR([CURLHandleSource/ares_build-i386.h])dnl
+AC_CONFIG_HEADERS([config.h])dnl
+AC_CONFIG_MACRO_DIR([m4])dnl
 AC_CANONICAL_TARGET
-AM_INIT_AUTOMAKE([foreign 1.11 no-installinfo -Wall])
+AM_INIT_AUTOMAKE([foreign 1.11 no-installinfo -Wall])dnl
 AM_MAINTAINER_MODE
 AM_SANITY_CHECK
+AC_REQUIRE_AUX_FILE([depcomp])dnl
 AC_SEARCH_LIBS([strerror],[cposix])dnl# This used to be AC_ISC_POSIX
 
 # Checks for programs.
