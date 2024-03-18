@@ -82,7 +82,13 @@ jobs:
       uses: github/codeql-action/autobuild@v3
 
     - name: Manual build (xcodebuild)
-      run: cd CURLHandleSource && xcodebuild
+      run: |
+        pushd CURLHandleSource
+        xcodebuild
+        popd
+        pushd CURLHandleTesterSource
+        xcodebuild
+        popd
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3

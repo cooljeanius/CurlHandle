@@ -11,11 +11,12 @@
 		2F7C0CF009D9BEAF00FE334E /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C0CEC09D9BEAF00FE334E /* TestController.m */; };
 		2F7C0CF109D9BEAF00FE334E /* TextFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C0CEE09D9BEAF00FE334E /* TextFinder.m */; };
 		2F7C0CF409D9BEBF00FE334E /* FindPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7C0CF209D9BEBF00FE334E /* FindPanel.nib */; };
-		2F7C0D7C09D9C06900FE334E /* CURLHandle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7C0D7B09D9C06900FE334E /* CURLHandle.framework */; };
-		2F7C0D7F09D9C06B00FE334E /* CURLHandle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7C0D7B09D9C06900FE334E /* CURLHandle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A555D48F2BA8CCE900C673D4 /* CURLHandle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A555D48E2BA8CCE900C673D4 /* CURLHandle.framework */; };
+		A555D4932BA8CE3500C673D4 /* CURLHandle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A555D48E2BA8CCE900C673D4 /* CURLHandle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A555D4942BA8CE3A00C673D4 /* CURLHandle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A555D48E2BA8CCE900C673D4 /* CURLHandle.framework */; };
 		CE885B260EF08D5200B6E545 /* curl.icns in Resources */ = {isa = PBXBuildFile; fileRef = CE885B250EF08D5200B6E545 /* curl.icns */; };
 /* End PBXBuildFile section */
 
@@ -43,9 +44,19 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2F7C0D7F09D9C06B00FE334E /* CURLHandle.framework in Copy Frameworks */,
+				A555D4932BA8CE3500C673D4 /* CURLHandle.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A555D48D2BA8CC6600C673D4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				A555D4942BA8CE3A00C673D4 /* CURLHandle.framework in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -63,12 +74,12 @@
 		2F7C0CEC09D9BEAF00FE334E /* TestController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
 		2F7C0CED09D9BEAF00FE334E /* TextFinder.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = TextFinder.h; sourceTree = "<group>"; };
 		2F7C0CEE09D9BEAF00FE334E /* TextFinder.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = TextFinder.m; sourceTree = "<group>"; };
-		2F7C0D7B09D9C06900FE334E /* CURLHandle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CURLHandle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CA4F630368D1EE00C91783 /* CURLHandleTester_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CURLHandleTester_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CURLHandleTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CURLHandleTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A555D48B2BA8B5D900C673D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/FindPanel.nib; sourceTree = "<group>"; };
 		A555D48C2BA8B5DA00C673D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		A555D48E2BA8CCE900C673D4 /* CURLHandle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CURLHandle.framework; path = ../CURLHandleSource/build/Release/CURLHandle.framework; sourceTree = "<group>"; };
 		CE885B250EF08D5200B6E545 /* curl.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = curl.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				2F7C0D7C09D9C06900FE334E /* CURLHandle.framework in Frameworks */,
+				A555D48F2BA8CCE900C673D4 /* CURLHandle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +112,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2F7C0D7B09D9C06900FE334E /* CURLHandle.framework */,
+				A555D48E2BA8CCE900C673D4 /* CURLHandle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -190,6 +201,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "CURLHandleTester" */;
 			buildPhases = (
+				A555D48D2BA8CC6600C673D4 /* CopyFiles */,
 				2F7C0D0E09D9BF2B00FE334E /* Copy Frameworks */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
