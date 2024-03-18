@@ -72,7 +72,7 @@ jobs:
         # queries: security-extended,security-and-quality
 
     - name: Dependencies
-      run: brew install gawk autoconf autoconf-archive automake
+      run: brew install gawk autoconf-archive automake googletest nghttp2 groff
 
     - name: Pre-configure (autoreconf)
       run: autoreconf -fvi -Wall || autoconf -f -Wall || git submodule update --init --recursive --force
