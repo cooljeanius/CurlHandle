@@ -12,6 +12,9 @@
 /* Define if SystemConfiguration framework is available */
 #undef HAVE_FRAMEWORK_SYSTEMCONFIGURATION
 
+/* Define to 1 if you have the 'gcc_traditional' function. */
+#undef HAVE_GCC_TRADITIONAL
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 

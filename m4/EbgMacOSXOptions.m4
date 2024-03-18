@@ -441,7 +441,7 @@ AC_DEFUN([AC_GET_MACOSX_VERSION],[
     AC_MSG_CHECKING([Mac OS X Version])
     case $macosx_version in
          1[[23456789]].*)
-              AC_MSG_RESULT([???])
+              AC_MSG_RESULT([${macosx_version}])
               AC_MSG_WARN([this is a version that has not been tested with this macro yet])
               ;;
          11.*)
@@ -464,7 +464,7 @@ AC_DEFUN([AC_GET_MACOSX_VERSION],[
               AC_MSG_RESULT([Mac OS X 10.5 - Leopard.])
          ;;
          *)
-              AC_MSG_ERROR([MacOSX 10.5, 10.6, 10.7, 10.8, 10.9, or 11.x+ are needed. Found $macosx_version])
+              AC_MSG_ERROR([MacOSX 10.5, 10.6, 10.7, 10.8, 10.9, or 11.x+ are needed. Found ${macosx_version}])
          ;;
 	 esac
 ])

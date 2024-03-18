@@ -76,7 +76,7 @@ AC_TYPE_UINT64_T
 
 # Checks for library functions.
 AC_FUNC_ERROR_AT_LINE
-AC_PROG_GCC_TRADITIONAL
+AC_CHECK_FUNCS([gcc_traditional])dnl
 
 # Output.
 AC_CONFIG_FILES([Makefile])

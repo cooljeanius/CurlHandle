@@ -19156,8 +19156,8 @@ printf "%s\n" "using \"uname\"" >&6; }
 printf %s "checking Mac OS X Version... " >&6; }
     case $macosx_version in
          1[23456789].*)
-              { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: ???" >&5
-printf "%s\n" "???" >&6; }
+              { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: ${macosx_version}" >&5
+printf "%s\n" "${macosx_version}" >&6; }
               { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: this is a version that has not been tested with this macro yet" >&5
 printf "%s\n" "$as_me: WARNING: this is a version that has not been tested with this macro yet" >&2;}
               ;;
@@ -19188,7 +19188,7 @@ printf "%s\n" "Mac OS X 10.6 - Snow Leopard." >&6; }
 printf "%s\n" "Mac OS X 10.5 - Leopard." >&6; }
          ;;
          *)
-              as_fn_error $? "MacOSX 10.5, 10.6, 10.7, 10.8, 10.9, or 11.x+ are needed. Found $macosx_version" "$LINENO" 5
+              as_fn_error $? "MacOSX 10.5, 10.6, 10.7, 10.8, 10.9, or 11.x+ are needed. Found ${macosx_version}" "$LINENO" 5
          ;;
 	 esac
 
@@ -19845,7 +19845,12 @@ esac
 
 fi
 
+ac_fn_c_check_func "$LINENO" "gcc_traditional" "ac_cv_func_gcc_traditional"
+if test "x$ac_cv_func_gcc_traditional" = xyes
+then :
+  printf "%s\n" "#define HAVE_GCC_TRADITIONAL 1" >>confdefs.h
 
+fi
 
 # Output.
 ac_config_files="$ac_config_files Makefile"
