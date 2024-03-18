@@ -19155,7 +19155,7 @@ printf "%s\n" "using \"uname\"" >&6; }
     { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking Mac OS X Version" >&5
 printf %s "checking Mac OS X Version... " >&6; }
     case $macosx_version in
-         123456789.*)
+         1[23456789].*)
               { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: ???" >&5
 printf "%s\n" "???" >&6; }
               { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: this is a version that has not been tested with this macro yet" >&5

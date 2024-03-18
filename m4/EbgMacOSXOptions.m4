@@ -440,7 +440,7 @@ AC_DEFUN([AC_GET_MACOSX_VERSION],[
     fi
     AC_MSG_CHECKING([Mac OS X Version])
     case $macosx_version in
-         1[23456789].*)
+         1[[23456789]].*)
               AC_MSG_RESULT([???])
               AC_MSG_WARN([this is a version that has not been tested with this macro yet])
               ;;
