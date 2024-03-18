@@ -91,10 +91,12 @@ target_triplet = x86_64-apple-darwin20.6.0
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/EbgMacOSXOptions.m4 \
-	$(top_srcdir)/m4/ax_lib_curl.m4 $(top_srcdir)/m4/bakefile.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ax_compare_version.m4 \
+	$(top_srcdir)/m4/ax_lib_curl.m4 \
+	$(top_srcdir)/m4/ax_path_generic.m4 \
+	$(top_srcdir)/m4/bakefile.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
 	$(top_srcdir)/m4/xorg-macros.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
@@ -209,7 +211,7 @@ am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
 distcleancheck_listfiles = find . -type f -print
 ACLOCAL = ${SHELL} '/Users/ericgallager/CurlHandle/missing' aclocal-1.16
 AMTAR = $${TAR-tar}
-AM_DEFAULT_VERBOSITY = 1
+AM_DEFAULT_VERBOSITY = 0
 AR = ar
 AUTOCONF = ${SHELL} '/Users/ericgallager/CurlHandle/missing' autoconf
 AUTOHEADER = ${SHELL} '/Users/ericgallager/CurlHandle/missing' autoheader
@@ -219,16 +221,16 @@ BK_MAKE_PCH = /Users/ericgallager/CurlHandle/bk-make-pch
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
-CLANG = /opt/local/bin/clang
+CLANG = /usr/bin/clang
 CPP = gcc -E
 CPPFLAGS = 
 CSCOPE = cscope
 CTAGS = ctags
-CURL_CFLAGS = -I/opt/local/include
-CURL_CONFIG = /opt/local/bin/curl-config
-CURL_LIBS = -L/opt/local/lib -lcurl
-CXX = g++
-CXXCPP = g++ -E
+CURL_CFLAGS = -I/Users/ericgallager/miniconda3/include
+CURL_CONFIG = /Users/ericgallager/miniconda3/bin/curl-config
+CURL_LIBS = -L/Users/ericgallager/miniconda3/lib -lcurl
+CXX = g++ -std=gnu++11
+CXXCPP = g++ -std=gnu++11 -E
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -g -O2
 CYGPATH_W = echo
@@ -256,12 +258,12 @@ IBTOOL = /usr/bin/ibtool
 ICC_PCH = 0
 ICC_PCH_CREATE_SWITCH = 
 ICC_PCH_USE_SWITCH = 
-INSTALL = /opt/local/bin/ginstall -c
+INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /opt/local/bin/ld
+LD = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
 LDFLAGS = 
 LIBOBJS =  ${LIBOBJDIR}error$U.o
 LIBS = -lcurl 
@@ -270,12 +272,12 @@ LIPO = lipo
 LN_S = ln -s
 LTLIBOBJS =  ${LIBOBJDIR}error$U.lo
 LT_SYS_LIBRARY_PATH = 
-MAINT = #
+MAINT = 
 MAKE = /usr/bin/make
 MAKEINFO = ${SHELL} '/Users/ericgallager/CurlHandle/missing' makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /opt/local/bin/gmkdir -p
-NM = /opt/local/bin/nm -B
+NM = /usr/bin/nm -B
 NMBLOOKUP = /opt/local/bin/nmblookup
 NMEDIT = nmedit
 OBJC = gcc
@@ -366,7 +368,7 @@ target_vendor = apple
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
-ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = -I m4 --install
 SUBDIRS = c-ares curl
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
@@ -374,7 +376,7 @@ all: config.h
 .SUFFIXES:
 am--refresh: Makefile
 	@:
-$(srcdir)/Makefile.in: # $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -400,9 +402,9 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	$(SHELL) ./config.status --recheck
 
-$(top_srcdir)/configure: # $(am__configure_deps)
+$(top_srcdir)/configure:  $(am__configure_deps)
 	$(am__cd) $(srcdir) && $(AUTOCONF)
-$(ACLOCAL_M4): # $(am__aclocal_m4_deps)
+$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
 
@@ -413,7 +415,7 @@ config.h: stamp-h1
 stamp-h1: $(srcdir)/config.h.in $(top_builddir)/config.status
 	@rm -f stamp-h1
 	cd $(top_builddir) && $(SHELL) ./config.status config.h
-$(srcdir)/config.h.in: # $(am__configure_deps) 
+$(srcdir)/config.h.in:  $(am__configure_deps) 
 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
 	rm -f stamp-h1
 	touch $@

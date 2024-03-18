@@ -5,10 +5,11 @@ install-sh linguist-vendored
 libtool linguist-vendored
 ltmain.sh linguist-vendored
 missing linguist-vendored
-Makefile linguist-vendored
+Makefile linguist-generated
 aclocal.m4 linguist-vendored
 m4/libtool.m4 linguist-vendored
 m4/lt*.m4 linguist-vendored
 m4/ax_*.m4 linguist-vendored
 m4/bakefile*.m4 linguist-vendored
 m4/xorg-macros.m4 linguist-vendored
+*.Portfile linguist-language=tcl

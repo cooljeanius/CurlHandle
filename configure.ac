@@ -7,13 +7,14 @@ AC_CONFIG_SRCDIR([CURLHandleSource/ares_build-i386.h])dnl
 AC_CONFIG_HEADERS([config.h])dnl
 AC_CONFIG_MACRO_DIR([m4])dnl
 AC_CANONICAL_TARGET
-AM_INIT_AUTOMAKE([foreign 1.11 no-installinfo -Wall])dnl
+AM_INIT_AUTOMAKE([foreign 1.11.6 no-installinfo -Wall])dnl
 AM_MAINTAINER_MODE
 AM_SANITY_CHECK
 AC_REQUIRE_AUX_FILE([depcomp])dnl
-AC_SEARCH_LIBS([strerror],[cposix])dnl# This used to be AC_ISC_POSIX
+AC_SEARCH_LIBS([strerror],[cposix])dnl# This used to be AC\_ISC\_POSIX
 
 # Checks for programs.
+AC_PROG_AR
 AS_IF([test "x${CC}" = "x"],[
   AM_PROG_CC_C_O
 ],[

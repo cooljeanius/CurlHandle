@@ -28,6 +28,9 @@ conftest*
 libtool
 lib*.a
 Makefile
+*.dirstamp
+*/*.dirstamp
+*/*/*.dirstamp
 
 # CMake
 *Cache.txt
