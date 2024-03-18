@@ -72,7 +72,7 @@ jobs:
         # queries: security-extended,security-and-quality
 
     - name: Dependencies
-      run: brew install gawk autoconf-archive automake googletest nghttp2 groff
+      run: brew install gawk autoconf-archive automake googletest nghttp2 groff libmetalink
 
     - name: Pre-configure (autoreconf)
       run: autoreconf -fvi -Wall || autoconf -f -Wall || git submodule update --init --recursive --force
@@ -80,6 +80,8 @@ jobs:
     # Autobuild attempts to build any compiled languages (C/C++, C#, Go, Java, or Swift).
     - name: Autobuild
       uses: github/codeql-action/autobuild@v3
+      env:
+        CODEQL_EXTRACTOR_CPP_AUTOINSTALL_DEPENDENCIES: false
 
     - name: Manual build (xcodebuild)
       run: |
