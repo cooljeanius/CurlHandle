@@ -72,7 +72,10 @@ jobs:
         # queries: security-extended,security-and-quality
 
     - name: Dependencies
-      run: brew install gawk
+      run: brew install gawk autoconf autoconf-archive automake
+
+    - name: Pre-configure (autoreconf)
+      run: autoreconf -fvi -Wall || autoconf -f -Wall || git submodule update --init --recursive --force
 
     # Autobuild attempts to build any compiled languages (C/C++, C#, Go, Java, or Swift).
     - name: Autobuild

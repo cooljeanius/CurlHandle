@@ -19845,10 +19845,10 @@ esac
 
 fi
 
-ac_fn_c_check_func "$LINENO" "gcc_traditional" "ac_cv_func_gcc_traditional"
-if test "x$ac_cv_func_gcc_traditional" = xyes
+ac_fn_c_check_func "$LINENO" "gcc_traditional_func" "ac_cv_func_gcc_traditional_func"
+if test "x$ac_cv_func_gcc_traditional_func" = xyes
 then :
-  printf "%s\n" "#define HAVE_GCC_TRADITIONAL 1" >>confdefs.h
+  printf "%s\n" "#define HAVE_GCC_TRADITIONAL_FUNC 1" >>confdefs.h
 
 fi
 
