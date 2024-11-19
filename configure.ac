@@ -11,7 +11,9 @@ AC_CANONICAL_TARGET
 AM_INIT_AUTOMAKE([foreign 1.11.6 no-installinfo -Wno-obsolete])dnl
 AM_MAINTAINER_MODE
 AM_SANITY_CHECK
+AC_REQUIRE_AUX_FILE([bk-make-pch])dnl
 AC_REQUIRE_AUX_FILE([depcomp])dnl
+AC_REQUIRE_AUX_FILE([test-driver])dnl
 AC_SEARCH_LIBS([strerror],[cposix])dnl# This used to be AC\_ISC\_POSIX
 
 # Checks for programs.

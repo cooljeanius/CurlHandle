@@ -2982,7 +2982,7 @@ as_fn_append ac_header_c_list " sys/types.h sys_types_h HAVE_SYS_TYPES_H"
 as_fn_append ac_header_c_list " unistd.h unistd_h HAVE_UNISTD_H"
 
 # Auxiliary files required by this configure script.
-ac_aux_files="ltmain.sh compile depcomp missing install-sh config.guess config.sub"
+ac_aux_files="ltmain.sh compile test-driver depcomp bk-make-pch missing install-sh config.guess config.sub"
 
 # Locations in which to look for auxiliary files.
 ac_aux_dir_candidates="${srcdir}/build-aux"
@@ -4120,6 +4120,8 @@ esac
 fi
 
 rm -f conftest.file
+
+
 
 
 

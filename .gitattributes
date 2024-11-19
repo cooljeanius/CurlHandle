@@ -1,5 +1,7 @@
-# main build system files:
+# build system files:
+bk-make-pch linguist-vendored
 configure linguist-generated
+configure.scan linguist-generated
 Makefile linguist-generated
 Makefile.in linguist-generated
 

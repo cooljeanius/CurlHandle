@@ -165,13 +165,15 @@ am__define_uniq_tagged_files = \
   done | $(am__uniquify_input)`
 DIST_SUBDIRS = $(SUBDIRS)
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in \
+	$(top_srcdir)/build-aux/bk-make-pch \
 	$(top_srcdir)/build-aux/compile \
 	$(top_srcdir)/build-aux/config.guess \
 	$(top_srcdir)/build-aux/config.sub \
 	$(top_srcdir)/build-aux/depcomp \
 	$(top_srcdir)/build-aux/install-sh \
 	$(top_srcdir)/build-aux/ltmain.sh \
-	$(top_srcdir)/build-aux/missing AUTHORS COPYING ChangeLog \
+	$(top_srcdir)/build-aux/missing \
+	$(top_srcdir)/build-aux/test-driver AUTHORS COPYING ChangeLog \
 	INSTALL NEWS README build-aux/compile build-aux/config.guess \
 	build-aux/config.sub build-aux/depcomp build-aux/install-sh \
 	build-aux/ltmain.sh build-aux/missing
